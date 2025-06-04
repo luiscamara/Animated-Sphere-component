@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: animated-sphere
+    env: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist/animated-sphere
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
