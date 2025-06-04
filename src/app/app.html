@@ -1,0 +1,63 @@
+<div class="app-container">
+  <app-animated-sphere 
+    [config]="sphereConfig" 
+    [audioIntensity]="audioIntensity">
+  </app-animated-sphere>
+  
+  <div class="controls-overlay">
+    <div class="audio-status" [ngClass]="{'active': isAudioActive, 'error': errorMessage}">
+      <div *ngIf="isAudioActive" class="status-indicator">
+        <div class="pulse"></div>
+        <span>Audio Active</span>
+      </div>
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+    </div>
+    
+    <div class="sphere-info">
+      <h2>Audio-Reactive Sphere</h2>
+      <p>The sphere pulses with your voice - speak or make noise!</p>
+    </div>
+    
+    <div class="config-controls">
+      <div class="control-group">
+        <label for="color1">Top Color:</label>
+        <input type="color" id="color1" [value]="sphereConfig.color1" 
+               (change)="updateConfig({color1: $any($event.target).value})" />
+      </div>
+      
+      <div class="control-group">
+        <label for="color2">Bottom Color:</label>
+        <input type="color" id="color2" [value]="sphereConfig.color2" 
+               (change)="updateConfig({color2: $any($event.target).value})" />
+      </div>
+      
+      <div class="control-group">
+        <label for="waveIntensity">Wave Intensity:</label>
+        <input type="range" id="waveIntensity" min="0" max="2" step="0.1" 
+               [value]="sphereConfig.waveIntensity" 
+               (input)="updateConfig({waveIntensity: +$any($event.target).value})" />
+        <span>{{ sphereConfig.waveIntensity }}</span>
+      </div>
+      
+      <div class="control-group">
+        <label for="animationSpeed">Animation Speed:</label>
+        <input type="range" id="animationSpeed" min="0.005" max="0.05" step="0.005" 
+               [value]="sphereConfig.animationSpeed" 
+               (input)="updateConfig({animationSpeed: +$any($event.target).value})" />
+        <span>{{ sphereConfig.animationSpeed }}</span>
+      </div>
+      
+      <div class="control-group">
+        <label for="audioScaleSensitivity">Audio Scale:</label>
+        <input type="range" id="audioScaleSensitivity" min="0" max="3" step="0.1" 
+               [value]="sphereConfig.audioScaleSensitivity" 
+               (input)="updateConfig({audioScaleSensitivity: +$any($event.target).value})" />
+        <span>{{ sphereConfig.audioScaleSensitivity }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
